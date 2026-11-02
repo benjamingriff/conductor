@@ -1,0 +1,21 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "noEmit": false,
+    "outDir": "dist",
+    "rootDir": ".",
+    "sourceMap": true
+  },
+  "include": [
+    "server",
+    "shared",
+    "desktop",
+    "src/desktop.d.ts"
+  ],
+  "exclude": [
+    "server/*.test.ts",
+    "desktop/*.test.ts"
+  ]
+}

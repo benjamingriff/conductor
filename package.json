@@ -1,0 +1,50 @@
+{
+  "name": "conductor",
+  "version": "0.2.1",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0 <25"
+  },
+  "scripts": {
+    "dev": "npm run build:main && node scripts/dev-desktop.mjs",
+    "build": "tsc --noEmit && vite build && npm run build:main",
+    "start": "electron .",
+    "test": "tsx --test server/*.test.ts",
+    "check": "tsc --noEmit",
+    "service:install": "node scripts/install-service.mjs",
+    "build:main": "tsc -p tsconfig.server.json && node scripts/build-desktop.mjs",
+    "dev:web": "concurrently -k -n api,web 'tsx watch server/main.ts' 'vite --host 127.0.0.1'",
+    "start:server": "node --disable-warning=ExperimentalWarning dist/server/main.js",
+    "package": "node scripts/package-desktop.mjs",
+    "install:desktop": "node scripts/install-desktop.mjs",
+    "test:desktop": "node scripts/smoke-desktop.mjs",
+    "test:packaged": "node scripts/smoke-desktop.mjs --packaged",
+    "ship": "node scripts/ship.mjs"
+  },
+  "dependencies": {
+    "express": "5.1.0",
+    "lucide-react": "0.468.0",
+    "luxon": "3.7.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@electron/packager": "20.3.0",
+    "@types/express": "5.0.3",
+    "@types/luxon": "3.7.1",
+    "@types/node": "24.10.0",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "@vitejs/plugin-react": "6.1.2",
+    "concurrently": "9.2.5",
+    "electron": "45.1.0",
+    "tsx": "4.20.6",
+    "typescript": "5.9.3",
+    "vite": "8.3.4"
+  },
+  "main": "dist/desktop/main.js",
+  "productName": "Conductor",
+  "description": "Local desktop scheduler for usage-gated T3 Code workflows"
+}
